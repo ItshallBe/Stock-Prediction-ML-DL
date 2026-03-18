@@ -1,0 +1,50 @@
+# --- 虚拟环境 ---
+.venv/
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+
+# --- Python 编译文件 & 缓存 ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# --- 环境变量 & 敏感信息 ---
+.env
+.flaskenv
+*.secrets
+*.pem
+*.key
+
+# --- 依赖管理 ---
+# 如果使用 Poetry，通常不忽略 poetry.lock；如果使用 pip，通常不忽略 requirements.txt
+# .python-version
+
+# --- 操作系统 & IDE ---
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# --- 构建 & 分发 ---
+dist/
+build/
+*.egg-info/
+nosetests.xml
+coverage.xml
+.coverage
+htmlcov/
+
+# --- 数据库 ---
+*.sqlite3
+*.db
+
+stock_data/**/*.csv
