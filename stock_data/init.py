@@ -8,6 +8,9 @@ from curl_cffi import requests, CurlError
 from dotenv import load_dotenv
 from pathlib import Path
 
+from utils.constants import STOCK_DAILY, STOCK_5MIN, STOCK_30MIN
+from utils.util import get_config
+
 load_dotenv()
 TWELVE_API_KEY = os.getenv("TWELVE_API_KEY")
 TWELVE_API_BASE = os.getenv("TWELVE_API_BASE")
@@ -95,23 +98,14 @@ def fetch_stock_data_freq(symbol, exchange, start_date = "2020-01-01 00:00:00", 
         logging.warning(f"No data fetched for {symbol}.")
 
 def init_fetch_stock_high_freq_data():
-    current_file_path = os.path.abspath(__file__)
-    project_dir = os.path.dirname(os.path.dirname(current_file_path))
-    config_path = os.path.join(project_dir, 'config.json')
-    try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            config_data = json.load(f)
+    config_data = get_config()
+    if config_data:
         stocks = config_data.get("stocks", [])
-        freqs = ["30min","5min", "1day"]
+        freqs = [STOCK_30MIN, STOCK_5MIN, STOCK_DAILY]
         # freqs = ["1min", "5min", "15min", "30min", "45min", "1h", "2h", "4h", "5h", "1day", "1week", "1month"]
         for stock in stocks:
             logging.info(f"fetching TWELVE data: {stock}")
             for freq in freqs:
                 fetch_stock_data_freq(stock, "US", START_DATE, freq)
-    except FileNotFoundError:
-        logging.ERROR("Not found config.json")
-    except json.JSONDecodeError:
-        logging.ERROR("Error format: config.json")
-
 if __name__ == "__main__":
     init_fetch_stock_high_freq_data()

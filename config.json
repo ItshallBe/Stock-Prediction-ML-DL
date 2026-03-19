@@ -1,3 +1,4 @@
 {
-  "stocks": ["AAPL", "MSFT", "NVDA", "AMZN", "META", "JPM", "V", "KO", "TSLA", "AMD"]
+  "stocks": ["AAPL", "MSFT", "NVDA", "AMZN", "META", "JPM", "V", "KO", "TSLA", "AMD"],
+  "test_stocks": ["AAPL"]
 }

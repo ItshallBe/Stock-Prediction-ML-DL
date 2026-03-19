@@ -1,0 +1,3 @@
+STOCK_DAILY = "1day"
+STOCK_5MIN = "5min"
+STOCK_30MIN = "30min"
